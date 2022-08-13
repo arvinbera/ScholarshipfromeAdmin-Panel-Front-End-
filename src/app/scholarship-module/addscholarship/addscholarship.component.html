@@ -1,0 +1,194 @@
+<div class="breadcrumbbar">
+    <div class="row align-items-center">
+        <div class="col-md-8 col-lg-8">
+            <h4 class="page-title">Add</h4>
+            <div class="breadcrumb-list">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Scholarship</a></li>
+                    <li class="breadcrumb-item"><a href="#">Scholarship</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contentbar">
+    <div class="row">
+        <!-- Start col -->
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <h5 class="card-title">Add Scholarship</h5>
+                </div>
+                <div class="card-body">
+                 <form   [formGroup]="form" (ngSubmit)="AddScholarship()">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label><strong>Name<sup>*</sup></strong></label>
+                        <input type="text" class="form-control" placeholder="Enter scholarship name" formControlName="name"
+                        [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">Scholarship Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><strong>Category<sup>*</sup></strong></label>
+                        <select class="form-control" formControlName="category_id"
+                        [ngClass]="{'is-invalid':submitted && f.category_id.errors}"
+                        >
+                            <option *ngFor="let x of allCategories.data" value="{{x._id}}">{{x.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.category_id.errors" class="invalid-feedback">
+                            <div *ngIf="f.category_id.errors.required">Category Name is required</div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                       <label><strong>Scholarship Description<sup>*</sup></strong></label>
+                       <textarea class="form-control" formControlName="scholarship_description"
+                       [ngClass]="{'is-invalid':submitted && f.scholarship_description.errors}">
+                       </textarea>
+                       <div *ngIf="submitted && f.scholarship_description.errors" class="invalid-feedback">
+                        <div *ngIf="f.scholarship_description.errors.required">Scholarship Description is required</div>
+                    </div>
+                    </div>
+                  </div>
+                    <label><strong>Scholarship Details<sup>*</sup></strong> </label>
+                    <div [ngxSummernote]="config"
+                    formControlName="description"
+                     >
+
+                    </div>
+                  <div class="form-row">
+                   <div class="form-group col-lg-12">
+                     <label><strong>Awards<sup>*</sup></strong></label>
+                     <textarea class="form-control" formControlName="award"
+                     [ngClass]="{'is-invalid':submitted && f.award.errors}"></textarea>
+                     <div *ngIf="submitted && f.award.errors" class="invalid-feedback">
+                        <div *ngIf="f.award.errors.required">Award Name is required</div>
+                    </div>
+                   </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                     <label><strong>Deadline Date<sup>*</sup></strong></label>
+                     <input type="date" class="form-control" formControlName="date"
+                     [ngClass]="{'is-invalid':submitted && f.date.errors}"/>
+                     <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                        <div *ngIf="f.date.errors.required">Date is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                     <label><strong>Amount<sup>*</sup></strong></label>
+                     <input type="text" class="form-control" placeholder="Enter amount details" formControlName="amount"
+                     [ngClass]="{'is-invalid':submitted && f.amount.errors}"/>
+                     <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                        <div *ngIf="f.amount.errors.required">Amount details is required</div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label><strong>Gender<sup>*</sup></strong></label>
+                      <select class="form-control" formControlName="gender"
+                      [ngClass]="{'is-invalid':submitted && f.gender.errors}">
+                        <option>--For All--</option>
+                        <option *ngFor="let x of genders;" value="{{x.value}}" >{{x.name}}</option>
+                     
+                      </select>
+                      <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                        <div *ngIf="f.gender.errors.required">Gender is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                       <label><strong>Provide Name<sup>*</sup></strong></label>
+                       <input type="text" placeholder="Enter provide name" class="form-control"
+                       formControlName="provide" [ngClass]="{'is-invalid':submitted && f.provide.errors}"/>
+                       <div *ngIf="submitted && f.provide.errors" class="invalid-feedback">
+                        <div *ngIf="f.provide.errors.required">Provide Name is required</div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                   <div class="form-group col-md-6">
+                    <label><strong>Eligibility<sup>*</sup></strong></label>
+                    <textarea class="form-control"
+                    formControlName="eligibility"
+                    [ngClass]="{'is-invalid':submitted && f.eligibility.errors}">
+
+                    </textarea>
+                    <div *ngIf="submitted && f.eligibility.errors" class="invalid-feedback">
+                        <div *ngIf="f.eligibility.errors.required">Eligibility is required</div>
+                    </div>
+                   </div>
+                   <div class="form-group col-md-6">
+                    <label><strong>Documents Needed<sup>*</sup></strong></label>
+                    <textarea class="form-control"
+                    formControlName="documents"
+                    [ngClass]="{'is-invalid':submitted && f.documents.errors}"></textarea>
+                    <div *ngIf="submitted && f.documents.errors" class="invalid-feedback">
+                        <div *ngIf="f.documents.errors.required">Document details is required</div>
+                    </div>
+                   </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>State<sup>*</sup></label>
+                      <ng-multiselect-dropdown
+                      [settings]="dropdownSettings"
+                      [data]="dropdownList"
+                      formControlName="states"
+                      >
+                    </ng-multiselect-dropdown>
+                    </div>
+                    <div class="form-group col-md-6">
+                     <label>Qualification<sup>*</sup></label>
+                     <ng-multiselect-dropdown
+                     formControlName="qualifications"
+                     [settings]="dropdownQualificationSettings"
+                     [data]="dropdownQualificationList"
+                     >
+
+                     </ng-multiselect-dropdown>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                     <label><strong>How to apply<sup>*</sup></strong></label>
+                     <textarea class="form-control"
+                     formControlName="apply"
+                     [ngClass]="{'is-invalid':submitted && f.apply.errors}"></textarea>
+                     <div *ngIf="submitted && f.apply.errors" class="invalid-feedback">
+                        <div *ngIf="f.apply.errors.required">Apply is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                     <label><strong>Application link<sup>*</sup></strong></label>
+                     <textarea class="form-control"
+                     formControlName="applicationlink"
+                     [ngClass]="{'is-invalid':submitted && f.applicationlink.errors}"></textarea>
+                     <div *ngIf="submitted && f.applicationlink.errors" class="invalid-feedback">
+                        <div *ngIf="f.applicationlink.errors.required">Apllication link is required</div>
+                    </div>
+                    </div>
+                   </div>
+                <div class="form-row">
+                   <div class="form-group col-md-6">
+                    <label><strong>Scholarship Image<sup>*</sup></strong></label>
+                    <input type="file" class="form-control" (change)="SetImage($event)">
+                   </div>
+                </div>
+                  <div class="form-row">
+                     <div class="form-group col-md-6">
+                       <input type="submit" value="Add Scholarship" class="btn btn-primary"/>
+                     </div>
+                  </div>
+                 </form> 
+                </div>
+            </div>
+        </div>
+        <!-- End col -->
+    </div>
+</div>

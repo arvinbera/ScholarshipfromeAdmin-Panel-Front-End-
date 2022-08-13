@@ -1,0 +1,81 @@
+<body class="vertical-layout">
+
+    <div id="containerbar" class="containerbar authenticate-bg">
+        <!-- Start Container -->
+        <div class="container">
+            <div class="auth-box login-box">
+                <!-- Start row -->
+                <div class="row no-gutters align-items-center justify-content-center">
+                    <!-- Start col -->
+                    <div class="col-md-6 col-lg-5">
+                        <!-- Start Auth Box -->
+                        <div class="auth-box-right">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form [formGroup]="form" (ngSubmit)="Login()">
+
+
+                                        <div class="form-head">
+                                            <a href="/" class="logo"><img
+                                                    src="https://scholarshipforme.com/admin/assets/images/logo.png"
+                                                    class="img-fluid" alt="logo"></a>
+                                        </div>
+                                        <!-- <h4 class="text-primary my-4">Log in</h4> -->
+
+
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Username"
+                                                formControlName="user_name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.user_name.errors }">
+                                            <div *ngIf="submitted && f.user_name.errors" class="invalid-feedback">
+                                                Username Required
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Enter Password"
+                                                    formControlName="password"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                                    Password Required
+                                                </div>
+                                            </div>
+                                                <div class="form-row mb-3">
+                                                    <div class="col-sm-6">
+                                                        <div class="custom-control custom-checkbox text-left">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="rememberme">
+                                                            <label class="custom-control-label font-14"
+                                                                for="rememberme">Remember Me</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <!-- <div class="forgot-psw">
+                                                    <a id="forgot-psw" href="" class="font-14">Forgot Password?</a>
+                                                </div> -->
+                                                    </div>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-primary btn-lg btn-block font-18">Login</button>
+
+                                            
+
+                                        
+                                    </form>
+                                </div>
+                                <!-- End Auth Box -->
+                            </div>
+                            <div class="col-md-12">
+                                <p class="text-center">© scholarshipforme.com 2022. All rights reserved.</p>
+                            </div>
+                            <!-- End col -->
+                        </div>
+                        <!-- End row -->
+                    </div>
+                </div>
+                <!-- En-->
+            </div>
+        </div>
+    </div>
+
+</body>

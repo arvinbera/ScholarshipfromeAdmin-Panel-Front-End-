@@ -1,0 +1,241 @@
+<div class="breadcrumbbar">
+    <div class="row align-items-center">
+        <div class="col-md-8 col-lg-8">
+            <h4 class="page-title">List</h4>
+            <div class="breadcrumb-list">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="https://scholarshipforme.com/admin_panel">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">List</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-4">
+            <div class="widgetbar">
+                <button class="btn btn-primary-rgba" id="modal_open_btn"><i
+                        class="feather icon-plus mr-2"></i>Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contentbar">
+    <div class="row">
+        <!-- Start col -->
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-3">
+                            <h5 class="card-title">User List</h5>
+                        </div>
+                        <div class="col-8">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                        <label>From Date</label>
+                                        <input type="date" class="form-control" id="from_date" name="from_date">
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label>To Date</label>
+                                        <input type="date" class="form-control" id="to_date" name="to_date">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label> &nbsp;</label>
+                                        <div class="dropdown col-12">
+                                            <button class="btn btn-primary dropdown-toggle" type="button"
+                                                data-toggle="dropdown">Dropdown
+                                                <span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0)" (click)="exportexcel()">Xls</a>
+                                                </li>
+                                                <li><a href="javascript:void(0)" (click)="SavePDF()">Pdf</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="content" #content>
+                            <table class="display table table-striped table-bordered" id="excel-table">
+                                <thead>
+                                    <tr>
+                                        <th>Sl.No</th>
+                                        <th>Name</th>
+                                        <th>Mobile</th>
+                                        <th>User Name</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Created</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let x of allUsers.data;let i=index;">
+                                        <td>{{i+1}}</td>
+                                        <td>{{x.name}}</td>
+                                        <td>{{x.mobile}}</td>
+                                        <td>{{x.user_name}}</td>
+                                        <td *ngIf="x.role===1">Admin</td>
+                                        <td *ngIf="x.role===0">Student</td>
+                                        <td>
+                                            <span class="text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            29 Apr-2022
+                                        </td>
+                                        <td>
+                                            <a href="./user/update/84" class="btn btn-primary btn-sm">Edit</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination">
+                            <style>
+                                .pagination li a {
+                                    border-radius: 4px;
+                                    margin: 8px;
+                                    border: 1px solid #eee;
+
+                                    height: 40px;
+                                    align-items: center;
+                                    display: flex;
+                                }
+
+                                .pagination li span {
+                                    border-radius: 4px;
+                                    margin: 8px;
+                                    border: 1px solid #eee;
+
+                                    height: 40px;
+                                    align-items: center;
+                                    display: flex;
+                                }
+                            </style>
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End col -->
+        </div>
+        <!-- End row -->
+    </div>
+</div>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row col-12" style="display: flex;justify-content:space-between">
+                <div class="col-6" style="text-align: start;">
+                    <h4 class="modal-title">Add User</h4>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="close" id="modal_close_btn">×</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-lg-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="AddUser()">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">Name <sup>*</sup></label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter  Name"
+                                        formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.name.errors.required">Name is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="user_name">User Name <sup>*</sup></label>
+                                    <input type="text" class="form-control" id="user_name" placeholder="Enter  Username"
+                                        formControlName="user_name"
+                                        [ngClass]="{ 'is-invalid': submitted && f.user_name.errors }">
+                                    <div *ngIf="submitted && f.user_name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.user_name.errors.required">Username is required</div>
+                                        <div *ngIf="f.user_name.errors.minlength">
+                                            Username must be at least 6 characters
+                                        </div>
+                                        <div *ngIf="f.user_name.errors.maxlength">
+                                            Username must not exceed 20 characters
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="mobile">Mobile Number <sup>*</sup></label>
+                                    <input type="text" class="form-control" id="mobile"
+                                        placeholder="Enter  Your Mobile Number" name="mobile" formControlName="mobile"
+                                        [ngClass]="{'is-invalid': submitted && f.mobile.errors}">
+                                    <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                                        <div *ngIf="f.mobile.errors.required">Mobile number is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter  Your Email"
+                                        formControlName="email" [ngClass]="{'is-invalid': submitted && f.email.errors}">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email address is required</div>
+                                        <div *ngIf="f.email.errors.email">Email address is invalid</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="password">Password <sup>*</sup></label>
+                                    <input type="password" class="form-control" id="password"
+                                        placeholder="Enter  Password" name="password" formControlName="password"
+                                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                        <div *ngIf="f.password.errors.minlength">
+                                            Password must be at least 6 characters
+                                        </div>
+                                        <div *ngIf="f.password.errors.maxlength">
+                                            Username must not exceed 40 characters
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="confirm_password">Confirm Password <sup>*</sup></label>
+                                    <input type="password" class="form-control" id="confirm_password"
+                                        placeholder="Enter  Confirm Password" formControlName="confirm_password"
+                                        [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }">
+                                        <div
+                                        *ngIf="submitted && f.confirm_password.errors"
+                                        class="invalid-feedback"
+                                      >
+                                        <div *ngIf="f.confirm_password.errors.required">
+                                          Confirm Password is required
+                                        </div>
+                                        <div *ngIf="f.confirm_password.errors.matching">
+                                          Confirm Password does not match
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div style="display: flex;align-items: flex-end;justify-content: flex-end">
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

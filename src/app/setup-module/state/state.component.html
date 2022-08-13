@@ -1,0 +1,196 @@
+<div class="breadcrumbbar">
+    <div class="row align-items-center">
+        <div class="col-md-8 col-lg-8">
+            <h4 class="page-title">List</h4>
+            <div class="breadcrumb-list">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="https://scholarshipforme.com/admin_panel">Setup</a></li>
+                    <li class="breadcrumb-item"><a href="#">State</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">List</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-4">
+            <div class="widgetbar">
+                <button class="btn btn-primary-rgba" id="modal_open_btn"><i
+                        class="feather icon-plus mr-2"></i>Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contentbar">
+    <div class="row">
+        <!-- Start col -->
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="display table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Name</th>
+                                        <th>Slug</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let x of allStates.data;let i = index">
+                                        <td>{{x.id}}</td>
+                                        <td>{{x.name}}</td>
+                                        <td>{{x.slug}}</td>
+                                        <td>
+                                            <span class="text-success" *ngIf="x.is_active===1">Active</span>
+                                            <span class="text-danger"  *ngIf="x.is_active===0">InActive</span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" (click)="OpenEditModel(x)">Edit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination">
+                            <style>
+                                .pagination li a {
+                                    border-radius: 4px;
+                                    margin: 8px;
+                                    border: 1px solid #eee;
+
+                                    height: 40px;
+                                    align-items: center;
+                                    display: flex;
+                                }
+
+                                .pagination li span {
+                                    border-radius: 4px;
+                                    margin: 8px;
+                                    border: 1px solid #eee;
+
+                                    height: 40px;
+                                    align-items: center;
+                                    display: flex;
+                                }
+                            </style>
+
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="page-item" *ngIf="pageNumber>1">
+                                        <a routerLink="/state/{{pageNumber-1}}" class="page-link" rel="previous"
+                                            aria-label="« Previous" (click)="StateList(pageNumber-1)">‹</a>
+
+                                    </li>
+                                    <li class="page-item " [ngClass]="{'active':i+1===pageNumber}" aria-current="page"
+                                        *ngFor="let x of counter(pages);let i= index;"><a
+                                            routerLink="/state/{{i+1}}"><span class="page-link"
+                                                (click)="StateList(i+1)">{{i+1}}</span></a>
+                                    </li>
+
+                                    <li class="page-item" *ngIf="pageNumber<pages">
+                                        <a routerLink="/state/{{pageNumber+1}}" class="page-link" rel="next"
+                                            aria-label="Next »" (click)="StateList(pageNumber+1)">›</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End col -->
+        </div>
+        <!-- End row -->
+    </div>
+</div>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row col-12" style="display: flex;justify-content:space-between">
+                <div class="col-6" style="text-align: start;">
+                    <h4 class="modal-title">Add State</h4>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="close" id="modal_close_btn">×</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-lg-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="AddState()">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">State Name <sup>*</sup></label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter State Name"
+                                        formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}">
+                                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.name.errors.required">State Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6"
+                                    style="display: flex;align-items: flex-end;justify-content: flex-end">
+                                    <button type="submit" class="btn btn-primary">Add State</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="myEditModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row col-12" style="display: flex;justify-content:space-between">
+                <div class="col-6" style="text-align: start;">
+                    <h4 class="modal-title">Edit Category</h4>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="close" (click)="CloseEditModal()">×</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-lg-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <form [formGroup]="form1" (ngSubmit)="UpdateState()">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">Category Name <sup>*</sup></label>
+                                    <input type="hidden" value="name" formControlName="_id" [(ngModel)]="model._id"/>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Category Name"
+                                    formControlName="name" [ngClass]="{'is-invalid':submitted && f1.name.errors}"
+                                     [(ngModel)]="model.name">
+                                    <div *ngIf="submitted && f1.name.errors" class="invalid-feedback">
+                                        <div *ngIf="f1.name.errors.required">State Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3" style="margin-top: 30px;">
+                                    <label for="active">Active</label>
+                                    <input type="checkbox" [checked]="model.checked" formControlName="is_active"/>
+                                </div>
+                                <div class="form-group col-md-3" style="display: flex;align-items: flex-end;justify-content: flex-end">
+                                    <button type="submit" class="btn btn-primary">Update Category</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

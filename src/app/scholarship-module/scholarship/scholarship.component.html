@@ -1,0 +1,483 @@
+<div class="breadcrumbbar">
+    <div class="row align-items-center">
+        <div class="col-md-8 col-lg-8">
+            <h4 class="page-title">List</h4>
+            <div class="breadcrumb-list">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Scholarship</a></li>
+                    <li class="breadcrumb-item"><a href="#">Scholarship</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">List</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-4">
+            <div class="widgetbar">
+                <a class="btn btn-primary-rgba" routerLink="/addscholarship"><i
+                        class="feather icon-plus mr-2"></i>Add</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contentbar">
+    <!-- Start row -->
+    <div class="row">
+        <!-- Start col -->
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <h5 class="card-title">Scholarship List</h5>
+
+                    <div class="search_container">
+                        <form method="GET" action="https://scholarshipforme.com/admin_panel/scholarship/search">
+                            <!-- <input type="hidden" name="_token" value="0BlT26zpp7nr0qpw3XInbvTm7YfM4WnNvvVeSY7k"> -->
+                            <!-- <input type="hidden" name="page" value= /> -->
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="name"> Category</label>
+                                    <select class="form-control select2 select2-hidden-accessible" id="category_id"
+                                        name="category_id" data-select2-id="select2-data-category_id" tabindex="-1"
+                                        aria-hidden="true">
+                                        <option value="" data-select2-id="select2-data-2-ovsx">---Select---</option>
+                                        <option value="1">General</option>
+                                        <option value="2">SC/ST/OBC</option>
+                                        <option value="3">Girls</option>
+                                        <option value="4">Minority</option>
+                                        <option value="5">Physically Challenged</option>
+                                        <option value="6">Economically Backward Class</option>
+                                        <option value="7">For All</option>
+                                        <option value="13">BPL-Below Poverty Line</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="name">Gender</label>
+                                    <select class="form-control select2 select2-hidden-accessible" id="gender"
+                                        name="gender" value="" data-select2-id="select2-data-gender" tabindex="-1"
+                                        aria-hidden="true">
+                                        <option value="" data-select2-id="select2-data-4-tcck">---Select---</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                        <option value="3">Others</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="name">State</label>
+
+                                    <select class="form-control select2 select2-hidden-accessible" id="state_id"
+                                        name="state_id" value="" data-select2-id="select2-data-state_id" tabindex="-1"
+                                        aria-hidden="true">
+                                        <option value="" data-select2-id="select2-data-6-idqs">---Select---</option>
+                                        <option value="4"> Assam</option>
+                                        <option value="10"> Delhi</option>
+                                        <option value="18"> Kerala</option>
+                                        <option value="19"> Lakshadweep</option>
+                                        <option value="24"> Mizoram</option>
+                                        <option value="25"> Nagaland</option>
+                                        <option value="37">All India</option>
+                                        <option value="1">Andaman and Nicobar Islands</option>
+                                        <option value="2">Andhra Pradesh</option>
+                                        <option value="3">Arunachal Pradesh</option>
+                                        <option value="5">Bihar</option>
+                                        <option value="6">Chandigarh</option>
+                                        <option value="7">Chhattisgarh</option>
+                                        <option value="8">Dadra and Nagar Haveli and Daman and Diu</option>
+                                        <option value="11">Goa</option>
+                                        <option value="12">Gujarat</option>
+                                        <option value="13">Haryana</option>
+                                        <option value="14">Himachal Pradesh</option>
+                                        <option value="15">Jammu and Kashmir</option>
+                                        <option value="16">Jharkhand</option>
+                                        <option value="17">Karnataka</option>
+                                        <option value="38">Ladakh</option>
+                                        <option value="20">Madhya Pradesh</option>
+                                        <option value="21">Maharashtra</option>
+                                        <option value="22">Manipur</option>
+                                        <option value="23">Meghalaya</option>
+                                        <option value="26">Orissa</option>
+                                        <option value="27">Puducherry</option>
+                                        <option value="28">Punjab</option>
+                                        <option value="29">Rajasthan</option>
+                                        <option value="30">Sikkim</option>
+                                        <option value="31">Tamil Nadu</option>
+                                        <option value="32">Telangana</option>
+                                        <option value="33">Tripura</option>
+                                        <option value="34">Uttar Pradesh</option>
+                                        <option value="35">Uttarakhand</option>
+                                        <option value="36">West Bengal</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="name"> Search</label>
+                                    <input type="text" name="search_query" id="search_query" class="form-control"
+                                        value="">
+                                </div>
+
+                            </div>
+                            <div style="display: flex;align-items: center;justify-content: center">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="display table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Deadline Date</th>
+                                    <th>State</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr *ngFor="let x of allScholarships;let i=index;">
+                                    <td>{{i+1}}</td>
+                                    <td>{{x.name}}</td>
+                                    <td>{{x.deadline_date|date:'dd-MMMM-yyyy'}}</td>
+                                    <td>
+
+                                        {{x.scholarship_states?.length > 1?
+                                        x.scholarship_states[0].state?.name +"(1)"
+                                        :"" }}
+
+                                        {{x.scholarship_states?.length==1?
+                                        x.scholarship_states[0].state?.name:""}}
+
+                                        {{x.scholarship_states?.length==0?"All Indian":""}}
+                                    </td>
+                                    <td>
+
+                                        <span class="is_active_btn" id="349"
+                                            style="color:green;cursor:pointer">Active</span>
+                                    </td>
+                                    <td>
+                                        <button id="modal_open_edit_btn" class="btn btn-primary btn-sm"
+                                            (click)="OpenScholarshipEditView(x)">Edit</button>
+                                        <button id="modal_open_btn" class="btn btn-primary btn-sm"
+                                            (click)="OpenScholarshipView(x)">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <style>
+                            .pagination li a {
+                                border-radius: 4px;
+                                margin: 8px;
+                                border: 1px solid #eee;
+
+                                height: 40px;
+                                align-items: center;
+                                display: flex;
+                            }
+
+                            .pagination li span {
+                                border-radius: 4px;
+                                margin: 8px;
+                                border: 1px solid #eee;
+
+                                height: 40px;
+                                align-items: center;
+                                display: flex;
+                            }
+                        </style>
+
+                        <nav>
+                            <ul class="pagination">
+
+                                <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
+                                    <span class="page-link" aria-hidden="true">‹</span>
+
+                                </li>
+                                <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="https://scholarshipforme.com/admin_panel/scholarships?page=2" rel="next"
+                                        aria-label="Next »">›</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End col -->
+    </div>
+    <!-- End row -->
+</div>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row col-12" style="display: flex;justify-content:space-between">
+                <div class="col-6" style="text-align: start;">
+                    <h4 class="modal-title">Add Category</h4>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="close" id="modal_close_btn" (click)="closeScholarshipView()">×</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-lg-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Name</strong></label>
+                                <label style="margin-left: 10px;">{{model.name}}</label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Category</strong></label>
+                                <label style="margin-left: 10px;">{{model.category?.name}}</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Description</strong></label>
+                                <div style="margin-left: 10px;" [innerHTML]="model.description"></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Details</strong></label>
+                                <label style="margin-left: 10px;">{{model.details}}</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Award</strong></label>
+                                <label style="margin-left: 10px;">{{model.award}}</label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Deadline Date</strong></label>
+                                <label style="margin-left: 10px;">{{model.deadline_date}}</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Amount</strong></label>
+                                <label style="margin-left: 10px;">{{model.amount}}</label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>States</strong></label>
+                                <ng-container *ngFor="let s of model.scholarship_states">
+                                    {{s.state.name}}
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Qualification</strong></label>
+                                <ng-container *ngFor="let s of model.scholarship_qualifications">
+                                    {{s.qualification?.name}}
+                                </ng-container>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Deadline Date</strong></label>
+                                <label style="margin-left: 10px;">{{model.deadline_date}}</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Gender</strong></label>
+                                <label style="margin-left: 10px;">{{getGenderName(model.gender)}}</label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Eligibility</strong></label>
+                                <label style="margin-left: 10px;">{{model.eligibility}}</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Documents Needed</strong></label>
+                                <label style="margin-left: 10px;">{{model.documents_needed}}</label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>How to apply</strong></label>
+                                <label style="margin-left: 10px;">{{model.how_to_apply}}</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Application Link</strong></label>
+                                <label style="margin-left: 10px;">{{model.documents_needed}}</label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Provider Name</strong></label>
+                                <label style="margin-left: 10px;">{{model.provider_name}}</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Provider Details</strong></label>
+                                <label style="margin-left: 10px;">{{model.provider_details}}</label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Image</strong></label>
+                                <label style="margin-left: 10px;"><img src="{{model.image}}" width="100"
+                                        height="100"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div id="myEditModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="row col-12" style="display: flex;justify-content:space-between">
+                <div class="col-6" style="text-align: start;">
+                    <h4 class="modal-title">Scholarship Edit</h4>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="close" id="modal_close_btn"
+                        (click)="closeEditScholarshipView()">×</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-lg-12">
+                <div class="card m-b-30">
+                <form [formGroup]="form"   (ngSubmit)="UpdateScholarship()">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Name</strong></label>
+                                <input type="text" class="form-control" [(ngModel)]="model.name"
+                                formControlName="name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Category</strong></label>
+                                
+                                <select [(ngModel)]="model.category_id" class="form-control" formControlName="category_id">
+                                    <option *ngFor="let x of allCategories.data" value="{{x._id}}">{{x.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Description</strong></label>
+                                <div [ngxSummernote]="config" [(summernoteModel)]="model.description"
+                                formControlName="description">
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Details</strong></label>
+                                <textarea [(ngModel)]="model.details" class="form-control"
+                                formControlName="details"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Award</strong></label>
+                                <textarea class="form-control" [(ngModel)]="model.award"
+                                formControlName="award"></textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Deadline Date</strong></label>
+                                <input type="date" class="form-control" [(ngModel)]="model.deadline_date" 
+                                formControlName="deadline_date"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Amount</strong></label>
+                                <input class="form-control" [(ngModel)]="model.amount" 
+                                formControlName="amount"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>States</strong></label>
+                                <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="dropdownList"
+                                    [(ngModel)]="model.selectedStates"
+                                    formControlName="states">
+                                </ng-multiselect-dropdown>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Qualification</strong></label>
+                                <ng-multiselect-dropdown [settings]="dropdownSettings"
+                                    [data]="dropdownQualificationList" [(ngModel)]="model.selectedQualification"
+                                    formControlName="qualifications">
+                                </ng-multiselect-dropdown>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Gender</strong></label>
+                                <select class="form-control" formControlName="gender" [(ngModel)]="model.gender">
+                                    <option>--For All--</option>
+                                    <option *ngFor="let x of genders;" [value]="x.value">{{x.name}}</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Eligibility</strong></label>
+                                <textarea [(ngModel)]="model.eligibility" class="form-control"
+                                formControlName="eligibility"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Documents Needed</strong></label>
+                                <textarea [(ngModel)]="model.documents_needed" class="form-control"
+                                formControlName="documents_needed"></textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>How to apply</strong></label>
+                                <textarea [(ngModel)]="model.how_to_apply" class="form-control"
+                                formControlName="how_to_apply"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Application Link</strong></label>
+                                <textarea [(ngModel)]="model.documents_needed" class="form-control"
+                                formControlName="application_link"></textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Provider Name</strong></label>
+                                <input type="text" [(ngModel)]="model.provider_name" class="form-control"
+                                formControlName="provider_name"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Provider Details</strong></label>
+                                <textarea [(ngModel)]="model.provider_details" class="form-control"
+                                formControlName="provider_details"></textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name"><strong>Image</strong></label>
+                                <input type="file" class="form-control" (change)="SetImage($event)"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                           <div class="form-group col-md-6">
+                            <input type="submit" value="Update Scholarship" class="btn btn-primary"/>
+                           </div>
+                        </div>
+                    </div>
+                </form> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
